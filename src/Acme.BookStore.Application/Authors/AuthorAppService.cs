@@ -12,6 +12,7 @@ namespace Acme.BookStore.Authors
     [Authorize(BookStorePermissions.Authors.Default)]
     public class AuthorAppService : BookStoreAppService, IAuthorAppService
     {
+        private readonly IRepository<Author, Guid> repo;
         private readonly IAuthorRepository _authorRepository;
         private readonly AuthorManager _authorManager;
 
@@ -25,7 +26,8 @@ namespace Acme.BookStore.Authors
 
         public async Task<AuthorDto> GetAsync(Guid id)
         {
-            var author = await _authorRepository.GetAsync(id);
+        
+            var author =  await _authorRepository.GetAsync(id);
             return ObjectMapper.Map<Author, AuthorDto>(author);
         }
 
@@ -57,11 +59,7 @@ namespace Acme.BookStore.Authors
         [Authorize(BookStorePermissions.Authors.Create)]
         public async Task<AuthorDto> CreateAsync(CreateAuthorDto input)
         {
-            var author = await _authorManager.CreateAsync(
-                input.Name,
-                input.BirthDate,
-                input.ShortBio
-            );
+            var author = await _authorManager.CreateAsync(input.Name, input.BirthDate, input.ShortBio );
 
             await _authorRepository.InsertAsync(author);
 

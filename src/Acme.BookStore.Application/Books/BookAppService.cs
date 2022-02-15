@@ -25,10 +25,7 @@ namespace Acme.BookStore.Books
     {
         private readonly IAuthorRepository _authorRepository;
 
-        public BookAppService(
-            IRepository<Book, Guid> repository,
-            IAuthorRepository authorRepository)
-            : base(repository)
+        public BookAppService(IRepository<Book, Guid> repository, IAuthorRepository authorRepository) : base(repository)
         {
             _authorRepository = authorRepository;
             GetPolicyName = BookStorePermissions.Books.Default;
@@ -86,6 +83,7 @@ namespace Acme.BookStore.Books
                 var bookDto = ObjectMapper.Map<Book, BookDto>(x.book);
                 bookDto.AuthorName = x.author.Name;
                 return bookDto;
+
             }).ToList();
 
             //Get the total count with another query

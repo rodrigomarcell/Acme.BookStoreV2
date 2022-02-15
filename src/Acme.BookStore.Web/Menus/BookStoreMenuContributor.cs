@@ -31,11 +31,7 @@ namespace Acme.BookStore.Web.Menus
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem("BookStore.Home", l["Menu:Home"], "~/"));
 
-            var bookStoreMenu = new ApplicationMenuItem(
-                "BooksStore",
-                l["Menu:BookStore"],
-                icon: "fa fa-book"
-            );
+            var bookStoreMenu = new ApplicationMenuItem("BooksStore",l["Menu:BookStore"], icon: "fa fa-book" );
 
             context.Menu.AddItem(bookStoreMenu);
 

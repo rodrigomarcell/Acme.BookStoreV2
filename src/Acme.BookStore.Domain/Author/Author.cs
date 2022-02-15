@@ -7,6 +7,7 @@ namespace Acme.BookStore.Authors
 {
     public class Author : FullAuditedAggregateRoot<Guid>
     {
+        
         public string Name { get; private set; }
         public DateTime BirthDate { get; set; }
         public string ShortBio { get; set; }
@@ -16,12 +17,7 @@ namespace Acme.BookStore.Authors
             /* This constructor is for deserialization / ORM purpose */
         }
 
-        internal Author(
-            Guid id,
-            [NotNull] string name,
-            DateTime birthDate,
-            [CanBeNull] string shortBio = null)
-            : base(id)
+        internal Author(Guid id, [NotNull] string name, DateTime birthDate, [CanBeNull] string shortBio = null) : base(id)
         {
             SetName(name);
             BirthDate = birthDate;
@@ -36,11 +32,7 @@ namespace Acme.BookStore.Authors
 
         private void SetName([NotNull] string name)
         {
-            Name = Check.NotNullOrWhiteSpace(
-                name,
-                nameof(name),
-                maxLength: AuthorConsts.MaxNameLength
-            );
+            Name = Check.NotNullOrWhiteSpace(name, nameof(name), maxLength: AuthorConsts.MaxNameLength);
         }
     }
 }

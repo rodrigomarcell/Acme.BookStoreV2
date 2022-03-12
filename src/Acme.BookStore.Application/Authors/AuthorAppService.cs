@@ -63,6 +63,8 @@ namespace Acme.BookStore.Authors
 
             await _authorRepository.InsertAsync(author);
 
+            var teste = ObjectMapper.Map<Author, AuthorDto>(author);
+
             return ObjectMapper.Map<Author, AuthorDto>(author);
         }
 

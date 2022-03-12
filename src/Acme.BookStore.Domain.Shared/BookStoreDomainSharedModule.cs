@@ -43,7 +43,7 @@ namespace Acme.BookStore
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<BookStoreResource>("en")
+                    .Add<BookStoreResource>("pt-BR")
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/BookStore");
 

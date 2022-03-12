@@ -64,7 +64,8 @@ namespace Acme.BookStore.Books
             var queryable = await Repository.GetQueryableAsync();
 
             //Prepare a query to join books and authors
-            var query = from book in queryable
+            var query = 
+                        from book in queryable
                         join author in _authorRepository on book.AuthorId equals author.Id
                         select new { book, author };
 
